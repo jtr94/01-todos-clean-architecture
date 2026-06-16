@@ -19,7 +19,6 @@ export class Server{
 
     public start(){
         this.app.use(json());
-        //this.app.post('INIT')
         this.app.listen(this.port);
         console.log(`Server running on port ${this.port}`);
     }

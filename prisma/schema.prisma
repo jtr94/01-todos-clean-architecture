@@ -1,0 +1,16 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model todos {
+  id          Int       @id @default(autoincrement())
+  text        String    @db.Text
+  category    String[]  @db.Text
+  createdAt   DateTime  @db.Timestamp() @updatedAt()
+  completedAt DateTime? @db.Timestamp()
+}

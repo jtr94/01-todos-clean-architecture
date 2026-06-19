@@ -9,8 +9,8 @@ export class TodoDatasourceImpl implements TodoDataSource {
     const todo = await prisma.todos.create({ data: createTodoDto! });
     return Todo.fromObj(todo);
   }
-  async getAll(id: number): Promise<Todo[]> {
-    const todo = await prisma.todos.findMany({ where: { id: id } });
+  async getAll( ): Promise<Todo[]> {
+    const todo = await prisma.todos.findMany();
     return todo.map((todo) => Todo.fromObj(todo));
   }
   async getById(id: number): Promise<Todo> {

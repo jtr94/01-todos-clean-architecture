@@ -1,5 +1,6 @@
 import express from 'express';
 import { json } from 'body-parser';
+import { AppRoutes } from './routes.ts';
 
 interface Options {
     port : number,
@@ -19,6 +20,7 @@ export class Server{
 
     public start(){
         this.app.use(json());
+        this.app.use(AppRoutes.routes);
         this.app.listen(this.port);
         console.log(`Server running on port ${this.port}`);
     }

@@ -19,7 +19,9 @@ export class Server{
     }
 
     public start(){
-        this.app.use(json());
+
+        this.app.use( express.json()); 
+
         this.app.use(AppRoutes.routes);
         this.app.listen(this.port);
         console.log(`Server running on port ${this.port}`);

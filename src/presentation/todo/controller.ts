@@ -1,19 +1,29 @@
 import { json } from "body-parser"
 import { Request, Response } from "express"
+import { TodoRepository } from "../../domain/index.ts";
 
 export class TodoController{
-    constructor(){}
+    constructor(
+        public repository : TodoRepository,
+    ){}
+
+
     
     public getTodos = async (req:Request, res:Response) => {
-        res.json('Hello');
+        const todos = await this.repository.getAll();
+        res.json(todos);
     }
 
     public getTodoById = async (req:Request, res:Response) => {
-        res.json('Hello');
+        const id = Number(req.params.id);
+        const todo = await this.repository.getById(id);
+        res.json(todo);
     }
 
     public createTodo = async (req:Request, res:Response) => {
-        res.json('Hello');
+        const body = await req.body;
+        const newTodo = await this.repository.create(body);
+        res.json(newTodo);
     }
     public updateTodo = async (req:Request, res:Response) => {
         res.json('Hello');

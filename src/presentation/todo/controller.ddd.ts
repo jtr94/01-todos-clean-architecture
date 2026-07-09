@@ -28,7 +28,7 @@ export class TodoController{
 
     public updateTodo = async (req:Request, res:Response) => {
         const id = Number(req.params.id);
-        const [error, updateTodoDto] = UpdateTodoDto.create(...req.body, id);
+        const [error, updateTodoDto] = UpdateTodoDto.create({ ...req.body, id });
         if(error) return res.status(400).json(error);
         
         const updTodo = await this.repository.updateById(updateTodoDto!);

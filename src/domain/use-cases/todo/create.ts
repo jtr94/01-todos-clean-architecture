@@ -3,11 +3,11 @@ import { Todo } from "../../entities/todo.entity.ts";
 import { TodoRepository } from "../../repositories/todo.repository.ts";
 
 
-interface CreateTodo {
+interface CreateUseCase {
     execute(todo :CreateTodoDTO): Promise<Todo>;
 }
 
-export class CreateUseCase implements CreateTodo {
+export class CreateTodo implements CreateUseCase {
     constructor(
         readonly repository: TodoRepository,
     ){}

@@ -2,11 +2,11 @@ import { Todo } from "../../entities/todo.entity.ts";
 import { TodoRepository } from "../../repositories/todo.repository.ts";
 
 
-interface GetTodos {
+interface GetAllUseCase {
     execute(): Promise<Todo[]>;
 }
 
-export class GetAllUseCase implements GetTodos {
+export class GetTodos implements GetAllUseCase {
     constructor(
         readonly repository: TodoRepository,
     ){}

@@ -19,7 +19,7 @@ export class TodoDatasourceImpl implements TodoDataSource {
     return Todo.fromObj(todo);
   }
   async updateById(updateTodoDto: UpdateTodoDto): Promise<Todo> {
-    await prisma.todos.findFirst({ where: { id: updateTodoDto.id } });
+    await this.getById(updateTodoDto.id);
     const updatedTodo = await prisma.todos.update({
       where: { id: updateTodoDto.id },
       data: updateTodoDto,
@@ -27,8 +27,8 @@ export class TodoDatasourceImpl implements TodoDataSource {
     return Todo.fromObj(updatedTodo);
   }
   async deleteById(id: number): Promise<Todo> {
-    await prisma.todos.findFirst({ where: { id:id } });
-    const deletedTodo = await prisma.todos.delete({ where: { id: id } });
+    await this.getById(id)
+    const deletedTodo = await prisma.todos.delete({ where: { id: id } });    
     return Todo.fromObj(deletedTodo);
   }
 }

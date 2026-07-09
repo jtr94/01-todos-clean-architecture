@@ -2,11 +2,11 @@ import { Todo } from "../../entities/todo.entity.ts";
 import { TodoRepository } from "../../repositories/todo.repository.ts";
 
 
-interface DeleteTodo {
+interface DeleteUseCase {
     execute(id:number): Promise<Todo>;
 }
 
-export class DeleteUseCase implements DeleteTodo {
+export class DeleteTodo implements DeleteUseCase {
     constructor(
         readonly repository: TodoRepository,
     ){}
